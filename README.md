@@ -4,6 +4,8 @@ Motion Editor is a standalone, browser-based 3D movement editor. It can be used 
 
 The application does not require an API connection, backend, database, or user account. All editing takes place in the browser, and project files are saved directly to the user's device.
 
+[Demo](https://panibo.github.io/Motion-Editor/)
+
 ![Motion Editor interface](docs/editor-preview.png)
 
 ## Features
