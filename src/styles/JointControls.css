@@ -1,0 +1,133 @@
+/* Static joint cards replace the previous collapsible control menus. */
+.joint_control_section {
+  flex: 0 0 auto;
+  overflow: hidden;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  background: var(--color-surface-muted);
+  box-shadow: var(--shadow-xs);
+  color: var(--color-text);
+}
+
+.joint_control_section h2 {
+  padding: var(--space-3) var(--space-4) 0;
+  color: var(--color-text);
+  font-size: 0.98rem;
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+  user-select: none;
+}
+
+.joint_control_content {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-2);
+  width: 100%;
+  padding: var(--space-3) var(--space-4) var(--space-4);
+}
+
+.editor_menu label {
+  color: var(--color-text-muted);
+  font-size: 0.86rem;
+  font-weight: 600;
+  line-height: 1.3;
+  user-select: none;
+}
+
+.editor_menu_item_slider {
+  width: 100%;
+  height: 1.25rem;
+  margin: 0;
+  border-radius: var(--radius-pill);
+  outline: none;
+  background: transparent;
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.editor_menu_item_slider::-webkit-slider-runnable-track {
+  height: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-border-strong) 52%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-soft);
+  box-shadow: var(--shadow-inset);
+}
+
+.editor_menu_item_slider::-webkit-slider-thumb {
+  width: 1.1rem;
+  height: 1.1rem;
+  margin-top: -0.35rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  background: var(--color-surface-strong);
+  box-shadow: var(--shadow-sm);
+  appearance: none;
+  -webkit-appearance: none;
+}
+
+.editor_menu_item_slider::-moz-range-track {
+  height: 0.5rem;
+  border: 1px solid color-mix(in srgb, var(--color-border-strong) 52%, transparent);
+  border-radius: var(--radius-pill);
+  background: var(--color-primary-soft);
+  box-shadow: var(--shadow-inset);
+}
+
+.editor_menu_item_slider::-moz-range-thumb {
+  width: 1.1rem;
+  height: 1.1rem;
+  border: 2px solid var(--color-primary);
+  border-radius: 50%;
+  background: var(--color-surface-strong);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Use the same button foundation for side selection and project actions. */
+.editor_menu_item_button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  min-width: 0;
+  min-height: var(--control-height);
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  background: var(--color-surface-strong);
+  box-shadow: var(--shadow-xs);
+  color: var(--color-text);
+  font-size: 0.84rem;
+  font-weight: 650;
+  line-height: 1.15;
+  user-select: none;
+}
+
+.editor_menu_item_button:hover {
+  border-color: var(--color-primary);
+  background: var(--color-primary-softer);
+  box-shadow: var(--shadow-sm);
+  transform: translateY(-1px);
+}
+
+.editor_menu_item_button:active {
+  box-shadow: var(--shadow-xs);
+  transform: translateY(0);
+}
+
+.editor_menu_item_button_selected {
+  border-color: var(--color-primary);
+  background: var(--color-primary-soft);
+  color: var(--color-primary-hover);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--color-primary) 28%, transparent);
+}
+
+@media (max-width: 560px) {
+  .joint_control_section h2 {
+    padding-inline: var(--space-3);
+  }
+
+  .joint_control_content {
+    padding-inline: var(--space-3);
+  }
+}

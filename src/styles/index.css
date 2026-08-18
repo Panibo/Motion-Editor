@@ -1,0 +1,210 @@
+@font-face {
+  font-family: "Myanmar-Khyay";
+  src:
+    url("../fonts/Myanmar-Khyay.ttf.woff") format("woff"),
+    url("../fonts/Myanmar-Khyay.ttf.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Myanmar-Khyay.ttf.svg#Myanmar-Khyay") format("svg");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+
+/* Shared design tokens keep every editor surface visually consistent. */
+:root {
+  color-scheme: light;
+
+  --font-sans: "Mukta Mahee", Inter, system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", sans-serif;
+  --font-display: "Myanmar-Khyay", "Monda", var(--font-sans);
+
+  --color-page: #edf4f8;
+  --color-page-deep: #dcebf4;
+  --color-surface: #f9fcfe;
+  --color-surface-muted: #eff5f8;
+  --color-surface-strong: #ffffff;
+  --color-canvas-start: #e7f1f7;
+  --color-canvas-end: #d7e8f1;
+  --color-on-accent: #ffffff;
+  --color-highlight: rgba(255, 255, 255, 0.95);
+  --color-border: #c5d6e0;
+  --color-border-strong: #9eb5c4;
+  --color-text: #3f4d68;
+  --color-text-muted: #68768d;
+  --color-primary: #597f9c;
+  --color-primary-hover: #456c89;
+  --color-primary-soft: #d9ebf7;
+  --color-primary-softer: #eaf4fa;
+  --color-danger: #c84f5d;
+  --color-danger-hover: #a93a48;
+  --color-danger-soft: #fdecef;
+  --color-success: #34785d;
+  --color-focus: #2f7fb7;
+  --color-focus-ring: color-mix(in srgb, var(--color-focus) 22%, transparent);
+  --color-overlay: rgba(27, 42, 59, 0.42);
+
+  --color-keyframe-1: #efaa72;
+  --color-keyframe-2: #d6ca62;
+  --color-keyframe-3: #88c58c;
+  --color-keyframe-4: #72c5d0;
+  --color-keyframe-5: #aa87cd;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-pill: 999px;
+
+  --shadow-xs: 0 1px 2px rgba(50, 73, 91, 0.08);
+  --shadow-sm: 0 4px 12px rgba(50, 73, 91, 0.1);
+  --shadow-md: 0 12px 30px rgba(50, 73, 91, 0.15);
+  --shadow-lg: 0 24px 64px rgba(35, 55, 72, 0.22);
+  --shadow-inset: inset 0 1px 3px rgba(58, 83, 101, 0.22);
+
+  --control-height: 2.625rem;
+  --transition-fast: 150ms ease;
+  --transition-base: 220ms ease;
+  --menu-columns: 1;
+  --keyframe-color: var(--color-primary);
+
+  font-family: var(--font-sans);
+  font-synthesis: none;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--color-text);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Normalize sizing and base element behavior across browsers. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  min-height: 100%;
+  background: var(--color-page);
+}
+
+body {
+  min-width: 320px;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 10% 10%, var(--color-highlight), transparent 32rem),
+    linear-gradient(145deg, var(--color-page) 0%, var(--color-page-deep) 100%);
+  color: var(--color-text);
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  color: inherit;
+}
+
+button:not(:disabled) {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.48;
+}
+
+button,
+input {
+  transition:
+    background-color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+button:focus-visible,
+input:focus-visible,
+[tabindex]:focus-visible {
+  outline: 3px solid color-mix(in srgb, var(--color-focus) 38%, transparent);
+  outline-offset: 2px;
+}
+
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+img,
+svg {
+  display: block;
+}
+
+.ui_icon {
+  flex: 0 0 auto;
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+::selection {
+  background: var(--color-primary-soft);
+  color: var(--color-text);
+}
+
+* {
+  scrollbar-color: var(--color-border-strong) transparent;
+  scrollbar-width: thin;
+}
+
+*::-webkit-scrollbar {
+  width: 0.65rem;
+  height: 0.65rem;
+}
+
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+*::-webkit-scrollbar-thumb {
+  border: 2px solid transparent;
+  border-radius: var(--radius-pill);
+  background: var(--color-border-strong);
+  background-clip: padding-box;
+}
+
+.shadow {
+  box-shadow: var(--shadow-sm);
+}
+
+.popup {
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-xl);
+}
+
+/* Respect the user's operating-system motion preference. */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

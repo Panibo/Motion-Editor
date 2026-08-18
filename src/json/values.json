@@ -1,0 +1,33 @@
+{
+  "default": {
+    "shoulderAbductionAdduction": 32.14474261129634,
+    "shoulderFlexionExtension": -6.30088459423295605,
+    "shoulderLateralRotationMedialRotation": 0,
+    "elbowRotation": 13.509319153816142,
+    "wristAbductionAdduction": 170,
+    "wristFlexionExtension": 180,
+    "wristLateralRotationMedialRotation": 175,
+    "duration": 5,
+    "mode": "mirror"
+  },
+  "min": {
+    "shoulderAbductionAdduction": -80,
+    "shoulderFlexionExtension": -135,
+    "shoulderLateralRotationMedialRotation": 0,
+    "elbowRotation": 0,
+    "wristAbductionAdduction": 90,
+    "wristFlexionExtension": 160,
+    "wristLateralRotationMedialRotation": 90,
+    "duration": 1
+  },
+  "max": {
+    "shoulderAbductionAdduction": 90,
+    "shoulderFlexionExtension": 60,
+    "shoulderLateralRotationMedialRotation": 90,
+    "elbowRotation": 140,
+    "wristAbductionAdduction": 270,
+    "wristFlexionExtension": 210,
+    "wristLateralRotationMedialRotation": 270,
+    "duration": 60
+  }
+}
