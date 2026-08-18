@@ -8,6 +8,4 @@ The original project is licensed under the Creative Commons Attribution 4.0 Inte
 
 https://creativecommons.org/licenses/by/4.0/
 
-Modifications to the original project have been made by [Your name or GitHub username].
-
 This modified version is not affiliated with or endorsed by the original project authors.
