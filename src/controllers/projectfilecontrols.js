@@ -44,6 +44,8 @@ const serializeKeyframes = (keyframes) =>
   keyframes.map((keyframe) => ({
     id: keyframe.id,
     value: keyframe.value,
+    isManuallySet:
+      keyframe.isManuallySet ?? keyframe.quaternions.length > 1,
     inputValuesLeft: normalizeLimbValues(keyframe.inputValuesLeft),
     inputValuesRight: normalizeLimbValues(keyframe.inputValuesRight),
     quaternions: keyframe.quaternions.map(({ name, quaternion }) => ({
@@ -178,6 +180,11 @@ const readEditorProject = async (file) => {
     keyframes: project.keyframes.map((keyframe) => ({
       id: keyframe.id,
       value: keyframe.value,
+      // Older project files predate this flag, so their saved poses are manual.
+      isManuallySet:
+        typeof keyframe.isManuallySet === "boolean"
+          ? keyframe.isManuallySet
+          : keyframe.quaternions.length > 1,
       quaternions: keyframe.quaternions,
       inputValuesLeft: normalizeLimbValues(keyframe.inputValuesLeft),
       inputValuesRight: normalizeLimbValues(keyframe.inputValuesRight),

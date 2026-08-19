@@ -12,25 +12,39 @@ const KeyframeBox = ({
 }) => {
   const keyFrameMaxCount = 5;
 
-  // Restore the saved slider values when selecting a completed keyframe.
+  // Restore a saved pose, or inherit the nearest preceding pose until edited.
   useEffect(() => {
-    if (
-      keyframes.find((keyframe) => keyframe.id === selectedKeyframe) ===
-      undefined
-    )
-      return;
+    const selectedIndex = keyframes.findIndex(
+      (keyframe) => keyframe.id === selectedKeyframe,
+    );
 
-    if (
-      selectedKeyframe !== null &&
-      keyframes.find((keyframe) => keyframe.id === selectedKeyframe).quaternions
-        .length > 1
+    if (selectedIndex === -1) return;
+
+    const selectedFrame = keyframes[selectedIndex];
+    const selectedFrameWasManuallySet =
+      selectedFrame.isManuallySet ?? selectedFrame.quaternions.length > 1;
+    let poseSource = selectedFrameWasManuallySet ? selectedFrame : null;
+
+    // An untouched frame follows the closest earlier frame that has pose data.
+    for (
+      let frameIndex = selectedIndex - 1;
+      !poseSource && frameIndex >= 0;
+      frameIndex -= 1
     ) {
-      const keyframe = keyframes.find(
-        (keyframe) => keyframe.id === selectedKeyframe
-      );
-      setInputValuesLeft(keyframe.inputValuesLeft);
-      setInputValuesRight(keyframe.inputValuesRight);
+      const precedingFrame = keyframes[frameIndex];
+      const hasPoseValues =
+        Object.keys(precedingFrame.inputValuesLeft ?? {}).length > 0 &&
+        Object.keys(precedingFrame.inputValuesRight ?? {}).length > 0;
+
+      if (hasPoseValues) {
+        poseSource = precedingFrame;
+      }
     }
+
+    if (!poseSource) return;
+
+    setInputValuesLeft({ ...poseSource.inputValuesLeft });
+    setInputValuesRight({ ...poseSource.inputValuesRight });
   }, [selectedKeyframe]);
 
   // Append a new frame and reuse the first available display number.
@@ -51,18 +65,9 @@ const KeyframeBox = ({
         id: randomId,
         value: nextValue.toString(),
         quaternions: [],
-        inputValuesLeft: {
-          x: 0,
-          y: 0,
-          z: 0,
-          w: 0,
-        },
-        inputValuesRight: {
-          x: 0,
-          y: 0,
-          z: 0,
-          w: 0,
-        },
+        inputValuesLeft: {},
+        inputValuesRight: {},
+        isManuallySet: false,
       },
     ]);
   };

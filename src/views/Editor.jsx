@@ -66,6 +66,26 @@ const Editor = () => {
   // Handle input change
   const handleInputChange = (event) => {
     const { name, value } = event.target;
+
+    // A frame only stops inheriting its predecessor after the user edits its pose.
+    if (selectedKeyframe !== null) {
+      setKeyframes((currentKeyframes) => {
+        const selectedFrame = currentKeyframes.find(
+          (frame) => frame.id === selectedKeyframe,
+        );
+
+        if (!selectedFrame || selectedFrame.isManuallySet) {
+          return currentKeyframes;
+        }
+
+        return currentKeyframes.map((frame) =>
+          frame.id === selectedKeyframe
+            ? { ...frame, isManuallySet: true }
+            : frame,
+        );
+      });
+    }
+
     // Set the input values based on the mode
     if (mode === "mirror" || mode === "right") {
       setInputValuesRight((prevInputValues) => ({
@@ -98,6 +118,7 @@ const Editor = () => {
       quaternions: [{ name: "", quaternion: "" }],
       inputValuesLeft: {},
       inputValuesRight: {},
+      isManuallySet: false,
     },
     {
       id: 5797054,
@@ -105,6 +126,7 @@ const Editor = () => {
       quaternions: [{ name: "", quaternion: "" }],
       inputValuesLeft: {},
       inputValuesRight: {},
+      isManuallySet: false,
     },
     {
       id: 2122420,
@@ -112,6 +134,7 @@ const Editor = () => {
       quaternions: [{ name: "", quaternion: "" }],
       inputValuesLeft: {},
       inputValuesRight: {},
+      isManuallySet: false,
     },
   ]);
 
